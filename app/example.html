@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+  <script type="text/javascript">
+
+    var map = null;
+
+    function GetMap()
+    {
+
+      map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials: "Bing Maps Key", center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+
+      Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: searchModuleLoaded });
+
+    }
+
+
+    function searchModuleLoaded()
+    {
+      var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+
+      var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
+      searchManager.search(searchRequest);
+    }
+
+    function searchCallback(searchResponse, userData)
+    {
+      alert("The first search result is " + searchResponse.searchResults[0].name + ".");
+    }
+
+
+    function searchError(searchRequest)
+    {
+      alert("An error occurred.");
+    }
+
+  </script>
+</head>
+<body onload="GetMap();">
+<div id='mapDiv' style="position:relative; width:600px; height:600px;"></div>
+</body>
+</html>

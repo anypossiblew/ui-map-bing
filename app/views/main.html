@@ -1,0 +1,33 @@
+<div class="jumbotron" style="position: relative;">
+  <div id="map_canvas" style="width: 100%; height: 300px;"
+       ui-map="myMap"
+       ui-event="{'map-click': 'addMarker($event, $params)', 'map-idle': 'setZoomMessage(myMap.getZoom())' }"
+       ui-options="mapOptions">
+  </div>
+
+  <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+       ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+  </div>
+
+  <div ui-map-info-window="myInfoWindow" style="background: white;padding: 10px;">
+    <h1>Marker</h1>
+    Lat: <input ng-model="currentMarkerLat">, Lng: <input ng-model="currentMarkerLng">
+    <a class="btn btn-primary"
+       ng-click="setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)">Set Position</a>
+  </div>
+</div>
+
+<div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
+
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
+
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+</div>
