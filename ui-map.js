@@ -55,6 +55,16 @@
                 map = $window[attrs.uiMapCache + "Map"];
               } else {
 
+                if (opts.ngCenter &&
+                  angular.isNumber(opts.ngCenter.lat) &&
+                  angular.isNumber(opts.ngCenter.lng)) {
+                  opts.center = new Microsoft.Maps.Location(opts.ngCenter.lat, opts.ngCenter.lng);
+                }
+
+                if (angular.isNumber(opts.ngZoom)) {
+                  opts.zoom = opts.ngZoom;
+                }
+
                 map = new Microsoft.Maps.Map(elm[0], opts);
               }
 
